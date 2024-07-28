@@ -2,10 +2,13 @@ package com.devkobe.blog.controller;
 
 import com.devkobe.blog.domain.Article;
 import com.devkobe.blog.dto.AddArticleRequest;
+import com.devkobe.blog.dto.AriticleResponse;
 import com.devkobe.blog.service.BlogService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +27,17 @@ public class BlogApiController {
         // 요청한 자원이 성공적으로 생성되었으며 저장된 블로그 글 정보를 응답 객체에 담아 전송
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(savedArticle);
+    }
+
+    // 전체 글을 조회한 뒤 반환하는 메서드
+    @GetMapping("/api/articles")
+    public ResponseEntity<List<AriticleResponse>> findAllArticles() {
+        List<AriticleResponse> articles = blogService.findAll()
+            .stream()
+            .map(AriticleResponse::new)
+            .toList();
+
+        return ResponseEntity.ok()
+            .body(articles);
     }
 }
