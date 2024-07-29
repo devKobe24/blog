@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,5 +40,14 @@ public class BlogApiController {
 
         return ResponseEntity.ok()
             .body(articles);
+    }
+
+    // 글 하나를 반환하는 메서드
+    @GetMapping("/api/articles/{id}")
+    public ResponseEntity<AriticleResponse> findArticle(@PathVariable Long id) {
+        Article article = blogService.findById(id);
+
+        return ResponseEntity.ok()
+            .body(new AriticleResponse(article));
     }
 }
