@@ -53,7 +53,7 @@ public class BlogApiController {
     }
 
     // DELETE 요청이 오면 글을 삭제하는 메서드
-    @DeleteMapping("/api/article/{id}")
+    @DeleteMapping("/api/articles/{id}")
     public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
         blogService.delete(id);
 
