@@ -3,6 +3,7 @@ package com.devkobe.blog.controller;
 import com.devkobe.blog.domain.Article;
 import com.devkobe.blog.dto.AddArticleRequest;
 import com.devkobe.blog.dto.AriticleResponse;
+import com.devkobe.blog.dto.UpdateArticleRequest;
 import com.devkobe.blog.service.BlogService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,5 +61,15 @@ public class BlogApiController {
 
         return ResponseEntity.ok()
             .build();
+    }
+
+    // PUT 요청이 오면 글을 수정하는 메서드
+    @PutMapping("/api/articles/{id}")
+    public ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody
+        UpdateArticleRequest request) {
+        Article updatedArticle = blogService.update(id, request);
+
+        return ResponseEntity.ok()
+            .body(updatedArticle);
     }
 }
