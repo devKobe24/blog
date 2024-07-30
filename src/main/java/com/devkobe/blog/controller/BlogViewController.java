@@ -45,6 +45,9 @@ public class BlogViewController {
     public String newArticle(@RequestParam(required = false) Long id, Model model) {
         if (id == null) { // 2. id가 없으면 생성.
             model.addAttribute("article", new ArticleViewResponse());
+        } else {
+            Article article = blogService.findById(id);
+            model.addAttribute("article", new ArticleViewResponse(article));
         }
 
         return "newArticle";
