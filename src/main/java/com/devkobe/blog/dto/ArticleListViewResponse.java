@@ -1,7 +1,9 @@
 package com.devkobe.blog.dto;
 
 import com.devkobe.blog.domain.Article;
+import lombok.Getter;
 
+@Getter
 public class ArticleListViewResponse {
 
     private final Long id;
