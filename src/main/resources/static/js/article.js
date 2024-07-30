@@ -12,8 +12,9 @@ if (deleteButton) {
 			location.replace('/articles');
 		});
 	});
+}
 
-	// 수정 가능
+// 수정 가능
 	// 1. id가 modify-btn인 엘리먼트 조회
 	const modifyButton = document.getElementById('modify-btn');
 
@@ -39,4 +40,3 @@ if (deleteButton) {
 			});
 		});
 	}
-}
