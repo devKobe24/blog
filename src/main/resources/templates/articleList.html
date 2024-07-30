@@ -12,6 +12,10 @@
 </div>
 
 <div class="container">
+	<button type="button" id="creat-btn"
+	th:onclick="|location.href='@{/new-article}'|"
+	class="btn btn-secondary btn-sm mb-3">글 등록</button>
+
 	<div class="row-6" th:each="item : ${articles}"><!-- 1. article 개수만큼 반복 -->
 		<div class="card">
 			<div class="card-header" th:text="${item.id}"><!-- 2. item의 id 출력 -->
